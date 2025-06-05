@@ -1,24 +1,25 @@
-import { putCarService } from "../sevice/carService";
-
 import { useState } from "react";
+import { putCarService } from "../service/carService"; 
 
-export const usePutCar = (onSuccess) => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+export const usePutCar = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    const editCar = async (id, carData) => {
-        setLoading(true);
+  const editCar = async (id, carData) => {
+    setLoading(true);
+    setError(null);
 
-        try {
-            await putCarService(id, carData);
-            setLoading(false);
-            if (onSuccess) onSuccess();
-        } catch (error) {
-            console.error('Error al editar el carro: ', error);
-            setError(error);
-            setLoading(false)
-        }
-    };
+    try {
+      const res = await putCarService(id, carData);
+      setLoading(false);
+      return res;
+    } catch (error) {
+      console.error("Error al editar el carro en editCar:", error);
+      setError(error);
+      setLoading(false);
+      throw error;
+    }
+  };
 
-    return { editCar, loading, error }
-}
+  return { editCar, loading, error };
+};

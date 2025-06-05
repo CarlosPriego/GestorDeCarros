@@ -1,4 +1,4 @@
-import { postCarService } from "../sevice/carService";
+import { postCarService } from "../service/carService";
 
 const usePostCar = () => {
     const saveCar = async (car) => {

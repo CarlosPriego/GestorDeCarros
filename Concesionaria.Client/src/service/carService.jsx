@@ -5,10 +5,20 @@ const baseUrl = 'http://localhost:3000/concesionaria/v1/car'
 export const getCarService = async () => {
     try {
         const response = await axios.get(baseUrl);
-        console.log(response)
         return response.data;
     } catch (error) {
         console.log('Error al realizar la petición GET: ', error);
+        throw error;
+    }
+};
+
+export const getCarByIdService = async (id) => {
+    try {
+        const response = await axios.get(`${baseUrl}/${id}`);
+        console.log("ID para editar:", id);
+        return response.data;
+    } catch (error) {
+        console.log('Error al realizar la petición GET por ID: ', error);
         throw error;
     }
 };
@@ -23,14 +33,14 @@ export const postCarService = async (carData) => {
     }
 };
 
-export const putCarService = async (carData, id) => {
-    try {
-        const response = await axios.put(`${baseUrl}/${id}`, carData);
-        return response.data;
-    } catch (error) {
-        console.log('Error al realizar la petición PUT: ', error);
-        throw error;
-    }
+export const putCarService = async (id, carData) => {
+  try {
+    const response = await axios.put(`${baseUrl}/${id}`, carData);
+    return response.data;
+  } catch (error) {
+    console.error('Error al realizar la petición PUT:', error);
+    throw error;
+  }
 };
 
 export const deleteCarService = async (id) => {

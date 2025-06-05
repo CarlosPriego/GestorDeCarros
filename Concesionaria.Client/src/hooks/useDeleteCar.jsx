@@ -1,4 +1,4 @@
-import { deleteCarService } from "../sevice/carService";
+import { deleteCarService } from "../service/carService";
 
 const useDeleteCar = () => {
     const deleteCar = async (id) => {
