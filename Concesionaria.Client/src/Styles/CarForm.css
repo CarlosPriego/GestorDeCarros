@@ -1,0 +1,64 @@
+.car-form {
+  max-width: 450px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.car-form input[type="text"],
+.car-form input[type="number"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 8px 0 18px 0;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.car-form input[type="text"]:focus,
+.car-form input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.error-form {
+  color: #d93025;
+  font-size: 14px;
+  margin-top: -14px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.car-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.car-form button:disabled {
+  background-color: #7baaf7;
+  cursor: not-allowed;
+}
+
+.car-form button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.car-form button + button {
+  background-color: #6c757d;
+  margin-left: 10px;
+}
+
+.car-form button + button:hover {
+  background-color: #5a6268;
+}

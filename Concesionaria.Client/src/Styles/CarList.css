@@ -1,0 +1,97 @@
+.car-list {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.car-list h2 {
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.car-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.car-list th,
+.car-list td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+  color: #444;
+}
+
+.car-list th {
+  background-color: #5b60669f;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.car-list tr:hover {
+  background-color: #f1faff;
+}
+
+.update-car-btn {
+  background-color: #28a745;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-car-btn:hover {
+  background-color: #1e7e34;
+}
+
+.delete-car-btn {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-car-btn:hover {
+  background-color: #b02a37;
+}
+
+.save-car-btn {
+  display: block;
+  margin: 30px auto 0;
+  background-color: #007bff;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-car-btn:hover {
+  background-color: #0056b3;
+}
+
+.link-btn {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
