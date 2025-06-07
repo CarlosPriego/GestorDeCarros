@@ -15,7 +15,6 @@ export const getCarService = async () => {
 export const getCarByIdService = async (id) => {
     try {
         const response = await axios.get(`${baseUrl}/${id}`);
-        console.log("ID para editar:", id);
         return response.data;
     } catch (error) {
         console.log('Error al realizar la petición GET por ID: ', error);

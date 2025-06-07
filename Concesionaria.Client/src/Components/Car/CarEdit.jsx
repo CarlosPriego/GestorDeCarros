@@ -10,15 +10,12 @@ const CarEdit = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("ID recibido en CarEdit:", id);
 
     getCarByIdService(id)
       .then((data) => {
-        console.log("Datos recibidos desde la API:", data);
         setCarToEdit(data.car);
       })
       .catch((err) => {
-        console.error("Error al obtener carro por ID:", err);
         setError(err);
       })
       .finally(() => setLoading(false));

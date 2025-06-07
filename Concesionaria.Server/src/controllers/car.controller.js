@@ -2,23 +2,20 @@ import { Car } from '../models/car.model.js';
 
 export const saveCar = async (req, res) => {
     try {
-        const {marca, modelo, motor} = req.body;
+        const { marca, modelo, motor, precio, color, kilometraje } = req.body;
 
         const car = await Car.create({
             marca,
             modelo,
-            motor
+            motor,
+            precio,
+            color,
+            kilometraje
         });
 
         return res.status(201).json({
             message: 'Car registration successful',
-            carDetails: {
-                id: car.id,
-                marca: car.marca,
-                modelo: car.modelo,
-                motor: car.motor,
-                estado: car.estado
-            }
+            carDetails: car
         });
 
     } catch (error) {
@@ -34,7 +31,7 @@ export const getCar = async (req, res) => {
         const { limite = 10, desde = 0 } = req.query;
 
         const car = await Car.findAll({
-            where: { estado: true },   // Solo trae los que tienen estado en true
+            where: { estado: true },
             offset: Number(desde),
             limit: Number(limite)
         });
@@ -57,7 +54,7 @@ export const getCarById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const car = await Car.findOne({ where: { id } });
+        const car = await Car.findOne({ where: { id, estado: true } });
 
         if (!car) {
             return res.status(404).json({
@@ -83,17 +80,20 @@ export const getCarById = async (req, res) => {
 export const updateCar = async (req, res) => {
     try {
         const { id } = req.params;
-        const data = req.body;
+        const { marca, modelo, motor, precio, color, kilometraje } = req.body;
 
         const car = await Car.findByPk(id);
 
-        if (!car) {
+        if (!car || !car.estado) {
             return res.status(404).json({ success: false, message: 'Car not found' });
         }
 
-        car.marca = data.marca,
-        car.modelo = data.modelo,
-        car.motor = data.motor
+        car.marca = marca;
+        car.modelo = modelo;
+        car.motor = motor;
+        car.precio = precio;
+        car.color = color;
+        car.kilometraje = kilometraje;
 
         await car.save();
 
@@ -118,15 +118,16 @@ export const deleteCar = async (req, res) => {
 
         const car = await Car.findByPk(id);
 
-        if (!car) {
+        if (!car || !car.estado) {
             return res.status(404).json({ success: false, message: 'Car not found' });
         }
 
-        await Car.destroy({ where: { id } });
+        car.estado = false;
+        await car.save();
 
         res.status(200).json({
             success: true,
-            message: 'Car deleted',
+            message: 'Car deleted logically',
             car
         });
 

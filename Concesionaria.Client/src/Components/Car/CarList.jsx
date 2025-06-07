@@ -5,15 +5,14 @@ import useGetCar from "../../hooks/useGetCar";
 import useDeleteCar from "../../hooks/useDeleteCar";
 
 import Button from "../Button";
+import "../../Styles/CarList.css";
 
 const CarList = () => {
   const { car, loading, error } = useGetCar();
   const { deleteCar } = useDeleteCar();
 
-  // Estado local para manejar la lista de autos
   const [carList, setCarList] = useState([]);
 
-  // Cada vez que "car" cambia (datos del hook), actualizamos el estado local
   useEffect(() => {
     if (car) {
       setCarList(car);
@@ -27,7 +26,6 @@ const CarList = () => {
     if (window.confirm("¿Quieres eliminar este vehículo?")) {
       try {
         await deleteCar(id);
-        // Filtramos el carro eliminado y actualizamos el estado local
         setCarList((prev) => prev.filter((c) => c.id !== id));
         alert("Auto eliminado correctamente");
       } catch (error) {
@@ -37,14 +35,17 @@ const CarList = () => {
   };
 
   return (
-    <div>
+    <div className="car-list">
       <h2>Lista de Autos</h2>
-      <table border="1" cellPadding="8" cellSpacing="0">
+      <table>
         <thead>
           <tr>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Motor</th>
+            <th>Precio</th>
+            <th>Color</th>
+            <th>Kilometraje</th>
             <th></th>
             <th></th>
           </tr>
@@ -55,6 +56,9 @@ const CarList = () => {
               <td>{c.marca}</td>
               <td>{c.modelo}</td>
               <td>{c.motor}</td>
+              <td>${c.precio}</td>
+              <td>{c.color}</td>
+              <td>{c.kilometraje} km</td>
               <td>
                 <Link to={`/form-car/${c.id}`}>
                   <Button className="update-car-btn">Actualizar</Button>
@@ -65,7 +69,7 @@ const CarList = () => {
                   className="delete-car-btn"
                   onClick={() => handleDelete(c.id)}
                 >
-                  Delete
+                  Eliminar
                 </Button>
               </td>
             </tr>

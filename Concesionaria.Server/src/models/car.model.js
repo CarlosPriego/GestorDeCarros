@@ -8,22 +8,53 @@ export const Car = sequelize.define('Car', {
         primaryKey: true
     },
     marca: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
     modelo: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
     motor: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+    precio: {
+        type: DataTypes.DOUBLE,
+        allowNull: false,
+        validate: {
+            isFloat: true,
+            min: 0
+        }
+    },
+    color: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+    kilometraje: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
     },
     estado: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true,
+        defaultValue: true
     }
-},
-{
+}, {
     tableName: 'Car',
-    timestamps: false,
-    createdAt: false
+    timestamps: false
 });
-
