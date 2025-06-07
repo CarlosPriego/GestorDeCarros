@@ -1,4 +1,3 @@
-// import '../Styles/Button.css'
 
 const Button = (props) => {
     return (
